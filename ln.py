@@ -47,6 +47,7 @@ def ln_b(x):
 # Find ln(x) by finding the roots of (e^x)-x
 # This speed and accuracy of this method 
 # depends on the speed and accuracy of the exp() function
+# Newton's method
 def ln_c(x):
 	# Make sure x is a positive integer
 	sign = 1
@@ -70,6 +71,7 @@ def ln_c(x):
 # and it's log2 (a). Convert that to ln (multiply by ln(2)),
 # then find the ln of x/(2^a) (with Taylor series) and add it # to the ln of the power of 2 (because ln(ab)=ln(a)+ln(b))
 # ln(x) = ln(2^a * (x / 2^a)) = ln(2^a) + ln(x/(2^a))
+# Logarithm Product Rule
 def ln_d(x):
 	# Number of iterations for Taylor
 	iter = 30
