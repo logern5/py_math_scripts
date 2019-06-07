@@ -65,7 +65,8 @@ print("N iterations of Newton's method with initial guess of 32:")
 print(log2_a(test_num))
 tim = timeit.timeit(
   "log2_a({})".format(test_num),
-  number = iter
+  number = iter,
+  globals = globals()
 )
 print("log2_a time: {0:.6f}\n".format(tim))
 
@@ -73,7 +74,8 @@ print("Bit-shifting + floor(log2(N)) iterations of Newton's method:")
 print(log2_b(test_num))
 tim = timeit.timeit(
   "log2_b({})".format(test_num),
-  number = iter
+  number = iter,
+  globals = globals()
 )
 print("log2_b time: {0:.6f}\n".format(tim))
 
@@ -81,7 +83,8 @@ print("Bit-shifting + log2(N) based linear approximation:")
 print(log2_c(test_num))
 tim = timeit.timeit(
   "log2_c({})".format(test_num),
-  number = iter
+  number = iter,
+  globals = globals()
 )
 print("log2_c time: {0:.6f}\n".format(tim))
 
@@ -89,7 +92,8 @@ print("math.log():")
 print(log2_d(test_num))
 tim = timeit.timeit(
   "log2_d({})".format(test_num),
-  number = iter
+  number = iter,
+  globals = globals()
 )
 print("log2_d time: {0:.6f}\n".format(tim))
 

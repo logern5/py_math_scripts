@@ -10,7 +10,7 @@ def ln_a(x):
 	# but slower.
 	iter = (int(x) * 5) + 20
 	sum = 0
-	sign = 1	
+	sign = 1
 	# The domain of the series is (-1,1] so we need to find
 	# -ln(1/x) if x>1
 	if x > 1:
@@ -45,7 +45,7 @@ def ln_b(x):
 	return sign * sum
 
 # Find ln(x) by finding the roots of (e^x)-x
-# This speed and accuracy of this method 
+# This speed and accuracy of this method
 # depends on the speed and accuracy of the exp() function
 # Newton's method
 def ln_c(x):
@@ -127,7 +127,8 @@ def test():
 			print(eval("{}({})".format(f[1], t)))
 			tim = tm.timeit(
 				"{}({})".format(f[1], t),
-				number = iter
+				number = iter,
+				globals = globals()
 			)
 			print("{} time: {:.6f}\n".format(f[1], tim))
 

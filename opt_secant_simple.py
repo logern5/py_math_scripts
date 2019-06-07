@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 # Equation optimizer (max and min finder)
+# Uses secant method (finite difference approximation of Newton's method)
 import math
 
 
@@ -19,7 +20,7 @@ def opt(expr, a, b, tol):
 	digits = -(math.log(tol)/math.log(10))
 	digits = int(round(digits, 1))-1
 
-	# Input function
+	# Input function, function to optimize
 	f = lambda x: eval(expr)
 
 	# Approximate derivative of f(x)
@@ -29,8 +30,11 @@ def opt(expr, a, b, tol):
 	# (using secant/Newton's method)
 
 	n = 0
+	# Find roots of f'(n) (usually max or min of function)
+	# While f'(n) > 0
 	while abs(f_prime(n)) > tol:
-		# Repeat quasi-Newtons method / Secant method
+		# Repeat Newtons method / Secant method
+		# n_1 = n_0- f(n_0)/f'(n_0)
 		n = n - ( f_prime(n) * h/(f_prime(n+h)-f_prime(n)) )
 	return (round(n, 2), round(f(n), 2))
 

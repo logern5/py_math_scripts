@@ -29,7 +29,8 @@ def test():
 			print(eval("{}({},{})".format(f[1], t[0], t[1])))
 			tim = tm.timeit(
 				"{}({},{})".format(f[1], t[0], t[1]),
-				number = iter
+				number = iter,
+				globals = globals()
 			)
 			print("{} time: {:.6f}\n".format(f[1], tim))
 

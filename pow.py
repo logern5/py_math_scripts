@@ -23,7 +23,7 @@ def pow_b(z):
 	x = z[0]
 	y = z[1]
 
-	# Find ln(x)
+	# Find ln(x) using log2 and Taylor Series
 	iter = 30
 	if x < 1:
 		sum = 0
@@ -35,6 +35,7 @@ def pow_b(z):
 	else:
 		ln_2 = 0.69314718
 		log2 = -1
+		# Find log2 of nearest power of 2 to x, and convert to ln
 		n = int(x)
 		while (n != 0):
 			log2 += 1
@@ -42,11 +43,13 @@ def pow_b(z):
 		ln_msb = log2 * ln_2
 		divisor = 1 << log2
 		num = x / divisor
+		# Find ln of x/(nearest power of 2)
 		sum = 0
 		num = 1/num
 		num = 1 - num
 		for i in range(1, iter):
 			sum += (num**i) / i
+		# Add results together to get ln(x)
 		ln_x = ln_msb + sum
 
 	# Find exp(y * ln(x))
@@ -96,7 +99,8 @@ def test():
 			print(eval("{}({})".format(f[1], t)))
 			tim = tm.timeit(
 				"{}({})".format(f[1], t),
-				number = iter
+				number = iter,
+				globals = globals()
 			)
 			print("{} time: {:.6f}\n".format(f[1], tim))
 
