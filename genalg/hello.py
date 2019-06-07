@@ -1,20 +1,22 @@
 import random as rand
 
-cr_count = 3
-gene_count = 6
-mut_chance = 0.2
-generations = 40
+cr_count = 20
+gene_count = 2
+mut_chance = 0.3
+generations = 200
 
 def ga_start():
 	pool = [None] * cr_count
 	for i in range(cr_count):
 		pool[i] = [None] * gene_count
 		for j in range(gene_count):
-			(pool[i])[j] = rand.randint(0,5)
+			(pool[i])[j] = rand.randint(97,122)
 	return pool
 
 def fitness(cr):
-	return -abs(3-sum(cr))
+	s1 = 'hi'
+	s2 = ''.join(chr(i) for i in cr)
+	return 40-sum(ch1 != ch2 for ch1, ch2 in zip(s1, s2))
 
 def crossover(cra, crb):
 	p = int(gene_count/2)
@@ -37,15 +39,20 @@ def gen_alg():
 	pool = ga_start()
 	print("Pool={}".format(pool))
 	for gen in range(generations):
-		print("Gen={}".format(gen))
-		for cr in pool:
-			print(fitness(cr))
+		print("\nGen={}".format(gen))
 		pool.sort(key=fitness)
 		pool = pool[::-1]
-		print("Sorted pool={}".format(pool))
+		print("Pool={}".format(pool))
+		print("Max fitness={}".format(fitness(pool[0])))
+		print(''.join(chr(i) for i in pool[0]))
 		pool_a = crossover(pool[0],pool[1])
 		pool = pool_a + pool[:(cr_count-2)]
 		pool = mutate(pool)
-		print("Pool={}".format(pool))
-
+	pool.sort(key=fitness)
+	pool = pool[::-1]
+	print("***END***")
+	print("Highest fitness score:{}".format(fitness(pool[0])))
+	print("Highest fitness chromosome:{}".format(pool[0]))
+	str = ''.join(chr(i) for i in pool[0])
+	print(str)
 gen_alg()
