@@ -1,5 +1,7 @@
 
 import math
+
+# Cost is sum of squares of residuals
 def cost(func, data, params):
     n = len(data)
     #print("Called with params:{}".format(params))
@@ -57,11 +59,14 @@ def opt(func, data, params):
         if ssum == 0:
             break
         gamma = gn/ssum
+        #print(ssum)
+        if(gamma > 10):
+            gamma = 10
         # adjust solution vector
         for i in range(l):
             vec[i] -= gamma * grad[i]
         cst = cost(func, data, vec)/ss_tot
-        #print(cst)
+        print("Current cost:{}".format(cst))
         j += 1
         for elem in grad:
             grad_norm += elem**2

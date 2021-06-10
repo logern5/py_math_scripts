@@ -3,7 +3,7 @@ import random as rand
 cr_count = 20
 gene_count = 2
 mut_chance = 0.3
-generations = 200
+generations = 500
 
 def ga_start():
 	pool = [None] * cr_count
@@ -33,6 +33,13 @@ def mutate(pool):
 			(pool[idx])[elem_idx] += 1
 		else:
 			(pool[idx])[elem_idx] -= 1
+		"""
+		#elem = (pool[idx])[elem_idx]
+		bit_pos = rand.randint(1,7) # ASCII is 7 bits
+		byt = (1 << bit_pos)
+		print(byt)
+		(pool[idx])[elem_idx] ^= byt
+		"""
 	return pool
 
 def gen_alg():

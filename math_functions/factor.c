@@ -41,5 +41,5 @@ void factor(ui64 x){
 }
 
 int main(void){
-  factor(2090862748777986991);
+  factor(2090862748777986991); /* This should print 1137182693 and 1838633987 */
 }
